@@ -4,924 +4,771 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chatbot - Giải pháp CSKH Tự động hóa</title>
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --primary-color: #0052CC;
-            --primary-hover: #0747A6;
-            --secondary-color: #00B8D9; /* Cyan for gradients */
-            --accent-color: #6554C0; /* Purple for gradients */
-            --text-dark: #172B4D;
-            --text-gray: #6B778C;
-            --bg-light: #F4F5F7;
-            --bg-white: #FFFFFF;
-            --border-color: #DFE1E6;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --shadow-soft: 0 10px 40px -10px rgba(0, 82, 204, 0.15);
-        }
+    <meta name="description"
+        content="Chatbot AI nhúng Website – Giữ khách đang do dự, trả lời 24/7, thu thập lead và tăng chuyển đổi tự động.">
+    <meta name="keywords" content="AI Chatbot, Website Chatbot, Thu thập Lead, Tăng chuyển đổi, Chatbot bán hàng">
+    <meta name="author" content="Arito Solutions">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
+    <!-- Open Graph -->
+    <meta property="og:title" content="Chatbot AI nhúng Website – Giữ khách, tăng lead, tăng chuyển đổi">
+    <meta property="og:description"
+        content="Mỗi khách rời website là một đơn hàng bị bỏ lỡ. Chatbot AI giúp giữ khách và thu lead 24/7.">
+    <meta property="og:type" content="website">
 
-        body {
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--bg-white);
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
-        }
+    <title>Chatbot AI nhúng Website – Giữ khách, tăng lead, tăng chuyển đổi</title>
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-        ul {
-            list-style: none;
-        }
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        /* --- ANIMATIONS DEFINITIONS --- */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    <!-- Lottie Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
 
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
+    <link rel="icon" href="assets/logo_a.webp" type="image/webp">
 
-        /* Class to trigger animations via JS */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- LAYOUT UTILITIES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Decorative Blobs */
-        .blob-bg {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(0, 82, 204, 0.1), rgba(0, 184, 217, 0.1));
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            animation: float 10s infinite ease-in-out;
-        }
-        .blob-1 { top: -100px; right: -100px; }
-        .blob-2 { top: 40%; left: -200px; background: linear-gradient(135deg, rgba(101, 84, 192, 0.1), rgba(255, 171, 0, 0.05)); }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 50px; /* Pill shape */
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 82, 204, 0.4);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(0, 82, 204, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .section-padding {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px); /* Stronger glass effect */
-            -webkit-backdrop-filter: blur(15px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding: 15px 0;
-            transition: var(--transition);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            color: var(--text-dark);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Underline effect */
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding-top: 160px;
-            padding-bottom: 100px;
-            background: linear-gradient(180deg, #F4F5F7 0%, #FFFFFF 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 3.8rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-            /* Gradient Text */
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-text p {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-
-        .hero-image {
-            background-color: white;
-            border-radius: 24px;
-            box-shadow: var(--shadow-soft);
-            height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.5);
-            animation: float 6s ease-in-out infinite; /* Floating effect */
-        }
-        
-        /* Circles decoration behind hero image */
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0,82,204,0.03) 0%, rgba(255,255,255,0) 70%);
-            z-index: 0;
-        }
-
-        .chat-ui {
-            width: 85%;
-            height: auto;
-            border: 1px solid #eee;
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            z-index: 1;
-        }
-
-        .chat-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f0f0f0;
-            margin-bottom: 15px;
-        }
-        .bot-avatar {
-            width: 30px; height: 30px; border-radius: 50%; background: var(--primary-color);
-            display: flex; justify-content: center; align-items: center; color: white; font-size: 0.8rem;
-        }
-
-        .chat-bubble {
-            padding: 12px 16px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            max-width: 85%;
-            font-size: 0.95rem;
-            opacity: 0; /* Hidden by default for animation */
-            transform: translateY(10px);
-        }
-
-        .bubble-bot {
-            background: linear-gradient(135deg, #0052CC, #2684FF);
-            color: white;
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-            animation: popIn 0.5s forwards ease-out;
-        }
-
-        .bubble-user {
-            background: #F4F5F7;
-            color: var(--text-dark);
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-            animation: popIn 0.5s forwards ease-out;
-        }
-
-        /* Delays for chat animation */
-        .chat-bubble:nth-child(2) { animation-delay: 0.5s; } /* Welcome */
-        .chat-bubble:nth-child(3) { animation-delay: 1.5s; } /* User ask */
-        .chat-bubble:nth-child(4) { animation-delay: 2.8s; } /* Bot answer */
-        
-        .typing-indicator {
-            display: flex; gap: 4px; padding: 10px; background: #eee; width: fit-content; border-radius: 12px;
-            margin-bottom: 10px; opacity: 0; animation: popIn 0.3s forwards; animation-delay: 2.2s;
-        }
-        .dot { width: 6px; height: 6px; background: #aaa; border-radius: 50%; animation: float 0.6s infinite alternate; }
-        .dot:nth-child(2) { animation-delay: 0.1s; }
-        .dot:nth-child(3) { animation-delay: 0.2s; }
-
-        /* --- TRUSTED BY --- */
-        .trusted-by {
-            background-color: transparent;
-            padding: 40px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .trusted-logos {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            flex-wrap: wrap;
-            opacity: 0.5;
-            font-weight: 700;
-            color: var(--text-gray);
-            font-size: 1.2rem;
-            filter: grayscale(100%);
-            transition: var(--transition);
-        }
-        
-        .trusted-logos:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        /* --- FEATURES SECTION --- */
-        .features {
-            background-color: transparent;
-            position: relative;
-        }
-
-        .section-header {
-            margin-bottom: 70px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-            transition: var(--transition);
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 0;
-            background: var(--primary-color);
-            transition: height 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: rgba(0, 82, 204, 0.1);
-        }
-
-        .feature-card:hover::before {
-            height: 100%;
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background-color: #DEEBFF;
-            color: var(--primary-color);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* --- HOW IT WORKS (Z-Pattern) --- */
-        .how-it-works {
-            background-color: #FAFBFC;
-            clip-path: polygon(0 5% , 100% 0, 100% 95%, 0 100%);
-            padding: 120px 0;
-        }
-
-        .step-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            margin-bottom: 100px;
-        }
-
-        .step-item:nth-child(even) .step-text {
-            order: 2;
-        }
-
-        .step-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .step-image {
-            background: white;
-            height: 350px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.4s;
-        }
-        
-        .step-item:hover .step-image {
-            transform: scale(1.02);
-        }
-        
-        /* Simulated Image Content */
-        .step-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
-        /* Fallback if no image */
-        .img-placeholder {
-            width: 100%; height: 100%;
-            background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: bold; font-size: 2rem; text-transform: uppercase;
-        }
-
-        .step-text h3 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-            line-height: 1.3;
-        }
-
-        .step-text ul {
-            margin-top: 25px;
-        }
-
-        .step-text li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            color: var(--text-gray);
-        }
-
-        .step-text li::before {
-            content: "✓";
-            color: white;
-            background: #36B37E;
-            width: 20px; height: 20px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px;
-            position: absolute;
-            left: 0;
-            top: 4px;
-        }
-
-        /* --- CTA SECTION --- */
-        .cta-section {
-            background: linear-gradient(135deg, #0747A6 0%, #4C9AFF 100%);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Decorative circles for CTA */
-        .cta-section::before, .cta-section::after {
-            content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,0.1);
-        }
-        .cta-section::before { width: 300px; height: 300px; top: -50px; left: -50px; }
-        .cta-section::after { width: 200px; height: 200px; bottom: -50px; right: 50px; }
-
-        .cta-section h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            position: relative; z-index: 1;
-        }
-
-        .cta-section .btn {
-            background-color: #FFAB00;
-            color: var(--text-dark);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .cta-section .btn:hover {
-            background-color: #FFC400;
-            transform: translateY(-3px) scale(1.05);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #fff;
-            padding: 80px 0 30px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-col h4 {
-            margin-bottom: 25px;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col a {
-            color: var(--text-gray);
-            transition: 0.2s;
-        }
-
-        .footer-col a:hover {
-            color: var(--primary-color);
-            padding-left: 5px; /* Slight movement on hover */
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-
-            .hero-content,
-            .step-item {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .step-item:nth-child(even) .step-text {
-                order: 0;
-            }
-
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero-image {
-                height: 350px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .cta-header { display: none; }
-        }
-    </style>
 </head>
 
 <body>
-
-    <header id="header">
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <nav>
-                <div class="logo">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-color);">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    ARITO AI Bot
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#features">Tính năng</a></li>
-                    <li><a href="#integration">Tích hợp</a></li>
-                    <li><a href="#pricing">Bảng giá</a></li>
-                    <li><a href="#contact">Liên hệ</a></li>
-                </ul>
-                <div class="cta-header desktop-only">
-                    <a href="#" class="btn btn-primary">Dùng thử miễn phí</a>
-                </div>
-                <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
-            </nav>
-        </div>
-    </header>
+            <a href="#" class="logo">
+                <img src="logo.webp" alt="Arito Logo" style="width: 170px;" />
+            </a>
 
-    <section class="hero">
-        <div class="blob-bg blob-1"></div>
-        <div class="blob-bg blob-2"></div>
-        
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Xây dựng Chatbot AI từ dữ liệu riêng của bạn</h1>
-                <p>Nền tảng tự động hóa CSKH cho Cá nhân & Tổ chức. Huấn luyện Chatbot bằng file tài liệu, Website, và
-                    tích hợp trực tiếp vào Zalo OA chỉ trong 5 phút.</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">Bắt đầu ngay</a>
-                    <a href="#" class="btn btn-outline">Xem Demo</a>
+            <ul class="nav-menu">
+                <li><a href="#solution" class="nav-link">Giải pháp</a></li>
+                <li><a href="#how-it-works" class="nav-link">Cách hoạt động</a></li>
+                <li><a href="#features" class="nav-link">Tính năng</a></li>
+                <li><a href="#pricing" class="nav-link">Bảng giá</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="#demo" class="btn btn-secondary">Dùng thử miễn phí</a>
+                <a href="#contact" class="btn btn-primary">Xem demo</a>
+            </div>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+
+                <h1 class="hero-title">
+                    Mỗi khách rời website là <span class="text-gradient">một đơn hàng bị bỏ lỡ</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Chatbot AI giúp giữ khách đang do dự, trả lời 24/7,<br>
+                    thu thập lead và dẫn dắt khách mua hàng tự động.
+                </p>
+
+                <div class="hero-cta btn-group">
+                    <a href="#demo" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Dùng thử miễn phí
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-play-circle"></i>
+                        Xem demo
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number"><span>3x</span></div>
+                        <div class="stat-label">Tăng tỷ lệ chuyển đổi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><span>24/7</span></div>
+                        <div class="stat-label">Trả lời tự động</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><span>60%</span></div>
+                        <div class="stat-label">Tiết kiệm thời gian CSKH</div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="chat-ui">
-                    <div class="chat-header">
-                        <div class="bot-avatar">AI</div>
-                        <div style="font-weight: 600; font-size: 0.9rem;">Trợ lý ảo</div>
+
+            <div class="hero-visual">
+                <div class="hero-glow"></div>
+                <img src="assets/hero-robot.png" alt="AI Chatbot Website" class="hero-image" id="heroImage" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROBLEM SECTION ==================== -->
+    <section class="problem-section" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Vấn đề</span>
+                </div>
+                <h2 class="section-title">Vì sao khách truy cập nhưng không để lại đơn hàng?</h2>
+                <p class="section-subtitle">
+                    Những lý do khiến bạn đang mất khách tiềm năng mỗi ngày
+                </p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon">
+                        <i class="fas fa-user-clock"></i>
                     </div>
-                    <div class="chat-bubble bubble-bot">Xin chào! Tôi có thể giúp gì cho bạn?</div>
-                    
-                    <div class="chat-bubble bubble-user">Quy định đổi trả hàng thế nào?</div>
-                    
-                    <div class="typing-indicator" id="typing">
-                        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <h4>Khách có câu hỏi nhưng không ai trả lời kịp</h4>
+                    <p>Khách vào xem sản phẩm nhưng không biết hỏi ai. Họ rời đi và không bao giờ quay lại.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon">
+                        <i class="fas fa-moon"></i>
                     </div>
-                    
-                    <div class="chat-bubble bubble-bot" id="final-msg">Theo chính sách mới, bạn có thể đổi trả trong 30 ngày nếu lỗi từ NSX.</div>
+                    <h4>Sale không trực 24/7</h4>
+                    <p>Khách hàng tiềm năng vào website ngoài giờ làm việc, nhưng không ai ở đó để hỗ trợ họ.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <h4>Khách rời web mà không để lại thông tin</h4>
+                    <p>Không thu được SĐT, email => không thể follow-up, không thể remarketing hiệu quả.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Mất khách tiềm năng mỗi ngày</h4>
+                    <p>Mỗi khách rời website là một cơ hội bán hàng mất đi. Chi phí marketing lãng phí.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="trusted-by reveal">
+    <!-- ==================== SOLUTION SECTION ==================== -->
+    <section class="solution-section" id="solution">
         <div class="container">
-            <p class="text-center"
-                style="margin-bottom: 25px; color: #6B778C; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">
-                Được tin dùng bởi các đội ngũ xuất sắc</p>
-            <div class="trusted-logos">
-                <span>ARITO ERP</span>
-                <span>SAFEBOOK</span>
-            </div>
-        </div>
-    </div>
-
-    <section id="features" class="features section-padding">
-        <div class="container">
-            <div class="text-center section-header reveal">
-                <h2>Mọi công cụ bạn cần</h2>
-                <p>Không cần biết lập trình (No-code). Chỉ cần tải dữ liệu lên, AI sẽ lo phần còn lại.</p>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Giải pháp</span>
+                </div>
+                <h2 class="section-title">Chatbot AI hoạt động như một nhân viên sale trên website</h2>
+                <p class="section-subtitle">
+                    Giữ khách lại, trả lời tự động, thu thập lead và dẫn dắt họ đến quyết định mua hàng
+                </p>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon">📄</div>
-                    <h3>Học từ Tài liệu</h3>
-                    <p>Upload file PDF, Word, Excel hoặc Text. AI sẽ tự động phân tích và trích xuất kiến thức để trả
-                        lời chính xác.</p>
+            <div class="solution-content">
+                <div class="solution-visual">
+                    <img src="assets/solution-analytics.png" alt="Chatbot Interface" class="solution-image"
+                        id="solutionImage" />
                 </div>
 
-                <div class="feature-card reveal">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Crawl Website</h3>
-                    <p>Nhập URL trang web của bạn. Chatbot sẽ tự động "đọc" toàn bộ nội dung website để cập nhật kiến
-                        thức.</p>
-                </div>
-
-                <div class="feature-card reveal">
-                    <div class="feature-icon">💬</div>
-                    <h3>Tích hợp Zalo OA</h3>
-                    <p>Kết nối Chatbot vào Zalo Official Account chỉ với vài cú click. Phản hồi khách hàng 24/7 ngay
-                        trên Zalo.</p>
-                </div>
-
-                <div class="feature-card reveal">
-                    <div class="feature-icon">🔌</div>
-                    <h3>API Mạnh mẽ</h3>
-                    <p>Cung cấp API linh hoạt để tích hợp AI Chatbot vào Mobile App, CRM hoặc hệ thống nội bộ.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="integration" class="how-it-works">
-        <div class="container">
-            <div class="step-item reveal">
-                <div class="step-text">
-                    <h3>Huấn luyện dữ liệu đa nguồn</h3>
-                    <p>Hệ thống hỗ trợ nhập liệu linh hoạt, giúp Chatbot hiểu sâu về doanh nghiệp của bạn.</p>
-                    <ul>
-                        <li>Tự động bóc tách nội dung từ PDF, Docx.</li>
-                        <li>Lên lịch quét Website định kỳ.</li>
-                        <li>Chỉnh sửa câu trả lời thủ công (Human-in-the-loop).</li>
-                    </ul>
-                </div>
-                <div class="step-image">
-                    <div class="img-placeholder"><img src="pic1.png" alt=""></div>
+                <div class="solution-list">
+                    <div class="solution-item animate-on-scroll">
+                        <div class="solution-item-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="solution-item-content">
+                            <h4>Trả lời khách 24/7</h4>
+                            <p>Không phụ thuộc nhân sự, chatbot luôn sẵn sàng trả lời mọi câu hỏi của khách</p>
+                        </div>
                     </div>
-            </div>
 
-            <div class="step-item reveal">
-                <div class="step-text">
-                    <h3>Kết nối đa kênh (Omnichannel)</h3>
-                    <p>Một Chatbot phục vụ mọi nơi. Khách hàng ở đâu, Chatbot ở đó.</p>
-                    <ul>
-                        <li><strong>Zalo OA:</strong> Tự động trả lời, chuyển nhân viên khi cần.</li>
-                        <li><strong>Website Widget:</strong> Nhúng vào web bằng 1 đoạn mã JS.</li>
-                        <li><strong>Messenger & Telegram:</strong> Sắp ra mắt.</li>
-                    </ul>
-                </div>
-                <div class="step-image">
-                     <div class="img-placeholder"><img src="pic2.png" alt=""></div>
+                    <div class="solution-item animate-on-scroll">
+                        <div class="solution-item-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="solution-item-content">
+                            <h4>Tự động hóa câu hỏi lặp lại</h4>
+                            <p>Tiết kiệm 30–60% thời gian CSKH bằng cách tự động trả lời câu hỏi phổ biến</p>
+                        </div>
                     </div>
+
+                    <div class="solution-item animate-on-scroll">
+                        <div class="solution-item-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="solution-item-content">
+                            <h4>Dẫn dắt khách theo kịch bản</h4>
+                            <p>Chatbot dẫn dắt khách hàng qua từng bước mua hàng, tăng tỷ lệ chuyển đổi</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-item animate-on-scroll">
+                        <div class="solution-item-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="solution-item-content">
+                            <h4>Thu thập lead tự nhiên</h4>
+                            <p>Thu thập SĐT, email, nhu cầu một cách tự nhiên trong cuộc trò chuyện</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-item animate-on-scroll">
+                        <div class="solution-item-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="solution-item-content">
+                            <h4>Lưu lịch sử hội thoại</h4>
+                            <p>Phân tích hành vi khách hàng để cải thiện chiến lược bán hàng</p>
+                        </div>
+                    </div>
+
+                    <div class="solution-item animate-on-scroll">
+                        <div class="solution-item-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="solution-item-content">
+                            <h4>RAG: Đọc tài liệu sản phẩm</h4>
+                            <p>AI đọc tài liệu, bảng giá, chính sách để trả lời chính xác như nhân viên</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
-        <div class="container reveal">
-            <h2>Sẵn sàng tự động hóa quy trình CSKH?</h2>
-            <p style="margin-bottom: 30px; opacity: 0.9; font-size: 1.1rem;">Tham gia cùng 1000+ doanh nghiệp đang sử dụng Arito Chatbot.</p>
-            <a href="#" class="btn">Tạo Chatbot Miễn phí</a>
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-cogs"></i>
+                    <span>Quy trình</span>
+                </div>
+                <h2 class="section-title">Chỉ 3 bước để bắt đầu</h2>
+                <p class="section-subtitle">
+                    Triển khai chatbot lên website trong chỉ vài phút
+                </p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h4>Nhúng chatbot vào website</h4>
+                    <p>Copy-paste đoạn code đơn giản vào website. Không cần kỹ thuật phức tạp.</p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h4>Chatbot nói chuyện & dẫn dắt</h4>
+                    <p>AI tự động trả lời câu hỏi, dẫn dắt khách hàng theo kịch bản mua hàng</p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h4>Thu lead & chuyển cho sale</h4>
+                    <p>Tự động thu thập thông tin khách hàng và chuyển cho đội sale xử lý</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
+    <!-- ==================== FEATURE HIGHLIGHTS ==================== -->
+    <section class="features-role" id="features">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="logo" style="margin-bottom: 20px;">Chatbot</div>
-                    <p style="color: var(--text-gray); font-size: 0.9rem;">
-                        Giải pháp AI Chatbot hàng đầu cho doanh nghiệp Việt Nam. Đơn giản, hiệu quả và bảo mật.
-                    </p>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Tính năng nổi bật</span>
                 </div>
-                <div class="footer-col">
+                <h2 class="section-title">Tính năng giúp tăng chuyển đổi</h2>
+                <p class="section-subtitle">
+                    Những tính năng thiết yếu để biến khách truy cập thành khách hàng tiềm năng
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="problem-grid">
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary-blue);">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <h4>Quick Reply</h4>
+                    <p>Khách chỉ cần click chọn câu trả lời, không cần gõ. Tăng tỷ lệ tương tác đáng kể.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary-blue);">
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <h4>Tự động follow-up</h4>
+                    <p>Follow-up khách hàng chưa mua theo hành vi: xem giá, thêm giỏ nhưng chưa thanh toán.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary-blue);">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4>Mini CRM</h4>
+                    <p>Quản lý lead thu được, xem lại lịch sử chat, phân loại và gán cho sale.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary-blue);">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h4>Nhiều chatbot cho nhiều website</h4>
+                    <p>Quản lý nhiều chatbot khác nhau cho nhiều website từ 1 dashboard duy nhất.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary-blue);">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h4>Kịch bản sale theo mùa</h4>
+                    <p>Tạo kịch bản chatbot riêng cho từng chiến dịch: Black Friday, Tết, Flash Sale...</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary-blue);">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h4>Báo cáo & Thống kê</h4>
+                    <p>Phân tích hành trình khách hàng, tỷ lệ rớt từng bước, tối ưu kịch bản chatbot.</p>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary-blue);">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>API / Webhook</h4>
+                    <p>Tích hợp với hệ thống CRM, Email Marketing, Google Sheets để đồng bộ lead.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== PRICING SECTION ==================== -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-tags"></i>
+                    <span>Bảng giá</span>
+                </div>
+                <h2 class="section-title">Bảng giá Chatbot nhúng Website</h2>
+                <p class="section-subtitle">
+                    Chọn gói phù hợp với lượng khách truy cập và nhu cầu chuyển đổi của bạn
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free -->
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Gói Free</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-amount">0đ</span>
+                            <span class="pricing-period">/ tháng</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>500 tin nhắn / tháng</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>1 kịch bản chatbot</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>AI trả lời cơ bản</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Thu thập lead</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>1 chatbot / website</span>
+                        </div>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#contact" class="btn btn-outline">Bắt đầu miễn phí</a>
+                    </div>
+                </div>
+
+                <!-- Starter -->
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Gói Starter</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-amount">349.000đ</span>
+                            <span class="pricing-period">/ tháng</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>20.000 tin nhắn / tháng</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>2 kịch bản chatbot</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>AI trả lời cơ bản</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Thu thập lead + Lưu lịch sử</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Mini CRM</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Tự động follow-up</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>3 chatbot / website</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Tùy chỉnh giao diện mức trung bình</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Báo cáo cơ bản</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>API/Webhook giới hạn</span>
+                        </div>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#contact" class="btn btn-outline">Bắt đầu ngay</a>
+                    </div>
+                </div>
+
+                <!-- Pro (Featured) -->
+                <div class="pricing-card featured animate-on-scroll">
+                    <div class="pricing-badge">Phổ biến nhất</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Gói Pro</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-amount">990.000đ</span>
+                            <span class="pricing-period">/ tháng</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>150.000 tin nhắn / tháng</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>3 kịch bản / tháng</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>AI tự học & trả lời ngữ cảnh phức tạp</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Follow-up đa bước theo hành vi</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Không giới hạn chatbot / website</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Tùy chỉnh giao diện nâng cao</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Báo cáo nâng cao</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>API/Webhook đầy đủ</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Export dữ liệu báo cáo</span>
+                        </div>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#contact" class="btn btn-primary">Bắt đầu ngay</a>
+                    </div>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Gói Enterprise</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-amount">Liên hệ</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Tin nhắn theo nhu cầu</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Kịch bản tùy chỉnh</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>AI theo ngành & ngữ cảnh riêng</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Follow-up đa kênh</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Báo cáo chuyên sâu + BI</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>API/Webhook tùy chỉnh</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Hỗ trợ ưu tiên</span>
+                        </div>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#contact" class="btn btn-outline">Liên hệ báo giá</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Note -->
+            <div class="section-header" style="margin-top: 3rem;">
+                <p class="section-subtitle" style="font-weight: 600; color: var(--primary-blue);">
+                    💡 Chỉ cần nâng từ Starter lên Pro, lượng request tăng 7.5 lần trong khi giá chỉ tăng 3 lần.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ADD-ON SECTION ==================== -->
+    <section class="addon-section" id="addon">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-rocket"></i>
+                    <span>Tính năng nâng cao</span>
+                </div>
+                <h2 class="section-title">Tăng ROI với các tính năng nâng cao</h2>
+                <p class="section-subtitle">
+                    Tối đa hóa hiệu quả chatbot với các tính năng phân tích và tối ưu chuyên sâu
+                </p>
+            </div>
+
+            <div class="addon-grid">
+                <div class="addon-card animate-on-scroll">
+                    <div class="addon-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="addon-content">
+                        <h4>Phân tích hành trình khách hàng</h4>
+                        <p>Xem chi tiết từng bước khách đi qua, tìm ra điểm rớt và tối ưu kịch bản</p>
+                    </div>
+                </div>
+
+                <div class="addon-card animate-on-scroll">
+                    <div class="addon-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="addon-content">
+                        <h4>A/B Testing kịch bản</h4>
+                        <p>Test nhiều phiên bản kịch bản để tìm ra cách tiếp cận hiệu quả nhất</p>
+                    </div>
+                </div>
+
+                <div class="addon-card animate-on-scroll">
+                    <div class="addon-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="addon-content">
+                        <h4>AI tối ưu Quick Reply</h4>
+                        <p>AI gợi ý Quick Reply dựa trên dữ liệu hành vi khách hàng thực tế</p>
+                    </div>
+                </div>
+
+                <div class="addon-card animate-on-scroll">
+                    <div class="addon-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="addon-content">
+                        <h4>Tích hợp Zalo / Facebook</h4>
+                        <p>Đồng bộ lead từ chatbot website sang Zalo OA, Facebook Messenger</p>
+                    </div>
+                </div>
+
+                <div class="addon-card animate-on-scroll">
+                    <div class="addon-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="addon-content">
+                        <h4>SMS / Email follow-up tự động</h4>
+                        <p>Gửi tin nhắn follow-up qua SMS, Email khi khách rời website</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TRUST SECTION ==================== -->
+    <section class="trust-section" id="trust">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Lý do chọn chúng tôi</span>
+                </div>
+                <h2 class="section-title">Phù hợp với mọi loại website</h2>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-card animate-on-scroll">
+                    <div class="trust-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>Website bán hàng & dịch vụ</h4>
+                    <p>E-commerce, shop online, landing page sản phẩm đều hoạt động mượt mà</p>
+                </div>
+
+                <div class="trust-card animate-on-scroll">
+                    <div class="trust-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Không cần kỹ thuật</h4>
+                    <p>Nhúng chatbot chỉ bằng 1 đoạn code đơn giản, không cần lập trình viên</p>
+                </div>
+
+                <div class="trust-card animate-on-scroll">
+                    <div class="trust-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Nhúng nhanh vào website</h4>
+                    <p>Chỉ 5 phút là bạn đã có chatbot hoạt động trên website của mình</p>
+                </div>
+
+                <div class="trust-card animate-on-scroll">
+                    <div class="trust-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h4>Tùy chỉnh theo thương hiệu</h4>
+                    <p>Màu sắc, logo, lời chào đều có thể tùy chỉnh phù hợp với doanh nghiệp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-content">
+                    <h2>Bắt đầu giữ khách ngay hôm nay</h2>
+                    <p>Biến khách truy cập thành khách hàng tiềm năng với AI Chatbot</p>
+                    <div class="cta-buttons">
+                        <a href="#demo" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Dùng thử miễn phí
+                        </a>
+                        <a href="#contact-form" class="btn btn-secondary">
+                            <i class="fas fa-calendar-check"></i>
+                            Nhận tư vấn triển khai
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="assets/logo_dark.webp" alt="Arito Logo" class="logo-image " style="width: auto;" />
+                    </a>
+                    <p>Chatbot AI nhúng Website – Giúp bạn giữ khách và tăng lead tự động 24/7.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Zalo"><i class="fas fa-comment-dots"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
                     <h4>Sản phẩm</h4>
-                    <ul>
-                        <li><a href="#">Tính năng</a></li>
-                        <li><a href="#">Tích hợp Zalo</a></li>
-                        <li><a href="#">API Docs</a></li>
-                        <li><a href="#">Bảo mật</a></li>
+                    <ul class="footer-links">
+                        <li><a href="#solution">Giải pháp</a></li>
+                        <li><a href="#features">Tính năng</a></li>
+                        <li><a href="#pricing">Bảng giá</a></li>
+                        <li><a href="#how-it-works">Cách hoạt động</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Tài nguyên</h4>
-                    <ul>
+
+                <div class="footer-column">
+                    <h4>Hỗ trợ</h4>
+                    <ul class="footer-links">
                         <li><a href="#">Hướng dẫn sử dụng</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Cộng đồng</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Liên hệ hỗ trợ</a></li>
+                        <li><a href="#">Tài liệu API</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Công ty</h4>
-                    <ul>
-                        <li><a href="#">Về chúng tôi</a></li>
-                        <li><a href="#">Liên hệ</a></li>
-                        <li><a href="#">Tuyển dụng</a></li>
+
+                <div class="footer-column">
+                    <h4>Liên hệ</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:19001234"><i class="fas fa-phone"></i> 1900 1234</a></li>
+                        <li><a href="mailto:contact@chatbot.vn"><i class="fas fa-envelope"></i> contact@chatbot.vn</a>
+                        </li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                &copy; 2026 Arito Chatbot. All rights reserved.
+
+            <div class="footer-bottom">
+                <p>© 2026 Arito. Tất cả quyền được bảo lưu.</p>
+                <div class="footer-legal">
+                    <a href="#">Điều khoản sử dụng</a>
+                    <a href="#">Chính sách bảo mật</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const nav = document.querySelector('.nav-links');
-            const btn = document.querySelector('.mobile-menu-btn');
-            
-            if (nav.style.display === 'flex') {
-                nav.style.display = 'none';
-                btn.innerHTML = '☰';
-            } else {
-                nav.style.display = 'flex';
-                nav.style.flexDirection = 'column';
-                nav.style.position = 'absolute';
-                nav.style.top = '70px';
-                nav.style.left = '0';
-                nav.style.width = '100%';
-                nav.style.background = 'white';
-                nav.style.padding = '20px';
-                nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-                nav.style.zIndex = '999';
-                btn.innerHTML = '✕';
-            }
-        }
-
-        // Sticky Header Effect
-        window.addEventListener('scroll', function () {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
-                header.style.padding = '10px 0';
-            } else {
-                header.style.boxShadow = 'none';
-                header.style.padding = '15px 0';
-            }
-        });
-        
-        // --- SCROLL REVEAL ANIMATION ---
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        // Trigger once on load
-        reveal();
-
-        // --- SIMULATE CHAT TYPING ---
-        const typing = document.getElementById('typing');
-        const finalMsg = document.getElementById('final-msg');
-        
-        // CSS Animation delays handle the appearance, JS handles the "typing" logic removal
-        setTimeout(() => {
-            // Typing appears at 2.2s
-            // Remove typing and show final message at 2.8s
-            typing.style.display = 'none';
-        }, 2800);
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
+
 </html>
