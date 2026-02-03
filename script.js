@@ -6,6 +6,7 @@
 // ==================== DOM READY ====================
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
+    loadFooter();
     initRoleTabs();
     initScrollAnimations();
     initSmoothScroll();
@@ -399,6 +400,50 @@ window.addEventListener('load', () => {
         }, 200 + (index * 100));
     });
 });
+
+// ==================== LOAD SHARED FOOTER ====================
+async function loadFooter() {
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (!footerPlaceholder) return;
+
+    try {
+        let html = '';
+
+        // Try to use the pre-loaded string from footer.js (to avoid CORS)
+        if (typeof SHARED_FOOTER_HTML !== 'undefined') {
+            html = SHARED_FOOTER_HTML;
+        } else {
+            // Fallback to fetch if the script wasn't included or failed
+            const isBlog = window.location.pathname.includes('/blog/');
+            const footerPath = isBlog ? '../components/footer.html' : 'components/footer.html';
+            const response = await fetch(footerPath);
+            if (response.ok) {
+                html = await response.text();
+            }
+        }
+
+        if (html) {
+            footerPlaceholder.innerHTML = html;
+
+            // Adjust paths if in blog subdirectory
+            const isBlog = window.location.pathname.includes('/blog/');
+            if (isBlog) {
+                const logo = document.getElementById('footer-logo');
+                if (logo) logo.src = '../assets/logo_dark.webp';
+
+                const links = document.querySelectorAll('.footer-link-home');
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('http')) {
+                        link.setAttribute('href', '../' + href);
+                    }
+                });
+            }
+        }
+    } catch (error) {
+        console.error('Error loading footer:', error);
+    }
+}
 
 // ==================== CONSOLE BRANDING ====================
 console.log('%c🤖 AI ERP Chatbot', 'font-size: 24px; font-weight: bold; color: #4F46E5;');

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Khám phá cách bảo mật dữ liệu doanh nghiệp tuyệt đối khi triển khai Chatbot AI nội bộ. Các tiêu chuẩn mã hóa và phân quyền dữ liệu tại Arito.">
+    <title>Chatbot AI và Bảo mật dữ liệu doanh nghiệp: Những điều cần biết - Blog Arito</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../assets/logo_a.webp" type="image/webp">
+
+    <style>
+        .post-header {
+            padding: 160px 0 60px;
+            background: linear-gradient(180deg, var(--primary-50), var(--white));
+            text-align: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-blue);
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .post-content-section {
+            padding-bottom: 100px;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .post-main-image {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .post-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .post-content h2 {
+            font-size: 1.75rem;
+            margin: 40px 0 20px;
+            color: var(--text-primary);
+        }
+
+        .post-content h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+            list-style: disc;
+        }
+
+        .post-cta {
+            background: var(--primary-gradient-soft);
+            border: 1px dashed var(--primary-blue);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .post-cta h4 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .post-header {
+                padding: 120px 0 40px;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.webp" alt="Arito Logo" style="width: 170px;" />
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#solution" class="nav-link">Giải pháp</a></li>
+                <li><a href="../index.html#features" class="nav-link">Tính năng</a></li>
+                <li><a href="../index.html#pricing" class="nav-link">Bảng giá</a></li>
+                <li><a href="index.html" class="nav-link active">Blog</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="../index.html#demo" class="btn btn-secondary">Dùng thử miễn phí</a>
+                <a href="../index.html#contact" class="btn btn-primary">Xem demo</a>
+            </div>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== POST HEADER ==================== -->
+    <header class="post-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <a href="index.html">Blog</a>
+                <span>/</span>
+                <span>Chatbot AI và Bảo mật dữ liệu doanh nghiệp</span>
+            </div>
+            <h1 class="section-title">Chatbot AI và Bảo mật dữ liệu doanh nghiệp: Những điều cần biết</h1>
+            <div class="post-meta">
+                <span><i class="far fa-calendar-alt"></i> 03/02/2026</span>
+                <span><i class="far fa-user"></i> Arito Tech</span>
+                <span><i class="far fa-folder"></i> Bảo mật</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== POST CONTENT ==================== -->
+    <article class="post-content-section">
+        <div class="post-container">
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000&auto=format&fit=crop"
+                alt="Data Security Illustration" class="post-main-image">
+
+            <div class="post-content">
+                <p>Bảo mật dữ liệu là mối quan tâm hàng đầu của mọi doanh nghiệp khi bắt đầu triển khai các giải pháp
+                    AI. Tại Arito, chúng tôi hiểu rằng tri thức doanh nghiệp là tài sản vô giá và cần được bảo vệ bằng
+                    những tiêu chuẩn nghiêm ngặt nhất.</p>
+
+                <h2>1. Dữ liệu của bạn được lưu trữ ở đâu?</h2>
+                <p>Tất cả dữ liệu tài liệu (PDF, Word, Excel) được tải lên Arito đều được mã hóa theo tiêu chuẩn AES-256
+                    trước khi lưu trữ. Chúng tôi sử dụng hạ tầng cloud bảo mật cao, đảm bảo cô lập dữ liệu giữa các
+                    khách hàng khác nhau.</p>
+
+                <h2>2. AI có sử dụng dữ liệu của tôi để huấn luyện công khai không?</h2>
+                <p><strong>Câu trả lời là KHÔNG.</strong> Arito cam kết dữ liệu của mỗi doanh nghiệp là hoàn toàn riêng
+                    tư. Mô hình AI Assistant của bạn chỉ được học dựa trên dữ liệu bạn cung cấp và không bao giờ được
+                    chia sẻ để huấn luyện cho các bên thứ ba hoặc mô hình công khai.</p>
+
+                <div class=\"post-cta\">
+                    <h4>Yên tâm triển khai AI với nền tảng bảo mật của Arito</h4>
+                    <p>Khám phá cách chúng tôi bảo vệ dữ liệu nhạy cảm của bạn trong khi vẫn tận dụng tối đa sức mạnh
+                        của AI.</p>
+                    <a href="../index.html" class="btn btn-primary">Tư vấn giải pháp bảo mật</a>
+                </div>
+
+                <h2>3. Cơ chế phân quyền truy cập</h2>
+                <p>Hệ thống cho phép bạn tùy chỉnh ai có quyền tương tác với chatbot nào. Điều này đảm bảo nhân viên chỉ
+                    tiếp cận được các thông tin phù hợp với vị trí và nhiệm vụ của họ trong công ty.</p>
+
+                <h2>Kết luận</h2>
+                <p>Triển khai AI không có nghĩa là đánh đổi bảo mật. Với Arito Chatbot, bạn có thể hoàn toàn yên tâm về
+                    sự an toàn của dữ liệu trong khi thúc đẩy hiệu suất làm việc của toàn tổ chức.</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="../components/footer.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[Mô tả bài viết cho SEO]">
+    <title>[Tiêu đề bài viết] - Blog Arito</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../assets/logo_a.webp" type="image/webp">
+
+    <style>
+        .post-header {
+            padding: 160px 0 60px;
+            background: linear-gradient(180deg, var(--primary-50), var(--white));
+            text-align: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-blue);
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .post-content-section {
+            padding-bottom: 100px;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .post-main-image {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .post-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .post-content h2 {
+            font-size: 1.75rem;
+            margin: 40px 0 20px;
+            color: var(--text-primary);
+        }
+
+        .post-content h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+            list-style: disc;
+        }
+
+        .post-cta {
+            background: var(--primary-gradient-soft);
+            border: 1px dashed var(--primary-blue);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .post-cta h4 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .post-header {
+                padding: 120px 0 40px;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.webp" alt="Arito Logo" style="width: 170px;" />
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#solution" class="nav-link">Giải pháp</a></li>
+                <li><a href="../index.html#features" class="nav-link">Tính năng</a></li>
+                <li><a href="../index.html#pricing" class="nav-link">Bảng giá</a></li>
+                <li><a href="index.html" class="nav-link active">Blog</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="../index.html#demo" class="btn btn-secondary">Dùng thử miễn phí</a>
+                <a href="../index.html#contact" class="btn btn-primary">Xem demo</a>
+            </div>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== POST HEADER ==================== -->
+    <header class="post-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <a href="index.html">Blog</a>
+                <span>/</span>
+                <span>[Tiêu đề bài viết]</span>
+            </div>
+            <h1 class="section-title">[Tiêu đề bài viết]</h1>
+            <div class="post-meta">
+                <span><i class="far fa-calendar-alt"></i> 03/02/2026</span>
+                <span><i class="far fa-user"></i> Arito Team</span>
+                <span><i class="far fa-folder"></i> Danh mục</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== POST CONTENT ==================== -->
+    <article class="post-content-section">
+        <div class="post-container">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop"
+                alt="Banner bài viết" class="post-main-image">
+
+            <div class="post-content">
+                <!-- Nội dung bài viết bắt đầu từ đây -->
+                <p>Nội dung giới thiệu bài viết...</p>
+
+                <h2>Tiêu đề H2 nội dung</h2>
+                <p>Nội dung chi tiết cho phần này...</p>
+
+                <h3>Tiêu đề H3 hỗ trợ</h3>
+                <p>Nội dung chi tiết hơn...</p>
+
+                <div class="post-cta">
+                    <h4>Bắt đầu ứng dụng AI cho doanh nghiệp của bạn ngay hôm nay!</h4>
+                    <p>Khám phá cách Arito giúp bạn tự động hóa quy trình và tăng trưởng lead hiệu quả.</p>
+                    <a href="../index.html" class="btn btn-primary">Dùng thử miễn phí</a>
+                </div>
+
+                <h2>Kết luận</h2>
+                <p>Tóm tắt nội dung bài viết...</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="../components/footer.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

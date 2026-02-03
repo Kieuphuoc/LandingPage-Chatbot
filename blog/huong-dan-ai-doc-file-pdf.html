@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hướng dẫn chi tiết cách xây dựng trợ lý AI đọc hiểu tài liệu PDF, Word bằng công nghệ RAG. Giải pháp tra cứu tri thức doanh nghiệp thông minh từ Arito.">
+    <title>Hướng dẫn xây dựng AI Assistant đọc hiểu mọi tài liệu PDF - Blog Arito</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../assets/logo_a.webp" type="image/webp">
+
+    <style>
+        .post-header {
+            padding: 160px 0 60px;
+            background: linear-gradient(180deg, var(--primary-50), var(--white));
+            text-align: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-blue);
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .post-content-section {
+            padding-bottom: 100px;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .post-main-image {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .post-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .post-content h2 {
+            font-size: 1.75rem;
+            margin: 40px 0 20px;
+            color: var(--text-primary);
+        }
+
+        .post-content h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+            list-style: disc;
+        }
+
+        .post-cta {
+            background: var(--primary-gradient-soft);
+            border: 1px dashed var(--primary-blue);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .post-cta i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .post-header {
+                padding: 120px 0 40px;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.webp" alt="Arito Logo" style="width: 170px;" />
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#solution" class="nav-link">Giải pháp</a></li>
+                <li><a href="../index.html#features" class="nav-link">Tính năng</a></li>
+                <li><a href="../index.html#pricing" class="nav-link">Bảng giá</a></li>
+                <li><a href="index.html" class="nav-link active">Blog</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="../index.html#demo" class="btn btn-secondary">Dùng thử miễn phí</a>
+                <a href="../index.html#contact" class="btn btn-primary">Xem demo</a>
+            </div>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== POST HEADER ==================== -->
+    <header class="post-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <a href="index.html">Blog</a>
+                <span>/</span>
+                <span>AI đọc file PDF</span>
+            </div>
+            <h1 class="section-title">Hướng dẫn xây dựng AI Assistant đọc hiểu mọi tài liệu PDF</h1>
+            <div class="post-meta">
+                <span><i class="far fa-calendar-alt"></i> 03/02/2026</span>
+                <span><i class="far fa-user"></i> Arito GenAI Team</span>
+                <span><i class="far fa-folder"></i> Giải pháp công nghệ</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== POST CONTENT ==================== -->
+    <article class="post-content-section">
+        <div class="post-container">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1000&auto=format&fit=crop"
+                alt="AI Reading Documents" class="post-main-image">
+
+            <div class="post-content">
+                <p>Bạn đã từng mơ ước có một trợ lý luôn thuộc lòng mọi cuốn catalog sản phẩm, mọi quy trình vận hành
+                    dài hàng trăm trang và mọi điều khoản hợp đồng cũ kỹ? Với sự bùng nổ của <strong>Generative
+                        AI</strong>, giấc mơ đó đã trở thành hiện thực.</p>
+
+                <p>Bài viết này sẽ hướng dẫn bạn cách xây dựng một <strong>AI Assistant</strong> có khả năng "đọc xuyên
+                    thấu" các tài liệu PDF và trả lời câu hỏi của bạn một cách chính xác dựa trên công nghệ <strong>RAG
+                        (Retrieval-Augmented Generation)</strong>.</p>
+
+                <h2>1. Tại sao AI cần đọc tài liệu riêng của bạn?</h2>
+                <p>Mặc dù ChatGPT hay Claude rất thông minh, nhưng chúng không có quyền truy cập vào dữ liệu nội bộ của
+                    doanh nghiệp bạn. Nếu bạn hỏi về "Chính sách bảo hành dòng máy X của công ty tôi", các mô hình này
+                    sẽ không biết hoặc tệ hơn là sẽ "nói dối" (hallucination).</p>
+                <p>Bằng cách tạo một chatbot AI đọc file PDF riêng, bạn đang cung cấp cho AI một <strong>"Não bộ tri
+                        thức"</strong> cụ thể, giúp nó trả lời dựa trên sự thật thay vì dự đoán.</p>
+
+                <h2>2. Công nghệ đứng sau: RAG là gì?</h2>
+                <p><strong>RAG (Retrieval-Augmented Generation)</strong> là quy trình gồm 3 bước giúp AI thông minh hơn:
+                </p>
+                <ul>
+                    <li><strong>Retrieval (Truy xuất):</strong> Khi bạn đặt câu hỏi, AI sẽ tìm kiếm trong kho tài liệu
+                        PDF của bạn để tìm ra những đoạn văn liên quan nhất.</li>
+                    <li><strong>Augmented (Bổ sung):</strong> AI lấy những đoạn văn đó và đưa vào ngữ cảnh của câu hỏi.
+                    </li>
+                    <li><strong>Generation (Tạo câu trả lời):</strong> Cuối cùng, AI trả lời câu hỏi của bạn dựa trên dữ
+                        liệu vừa tìm thấy.</li>
+                </ul>
+
+                <h2>3. Các bước triển khai thực tế</h2>
+
+                <h3>Bước 1: Số hóa và Chunking dữ liệu</h3>
+                <p>Tài liệu PDF cần được chuyển đổi sang định dạng văn bản. Sau đó, văn bản dài được chia thành các đoạn
+                    nhỏ (chunks) để AI dễ dàng xử lý. Mỗi đoạn nên dài khoảng 500-1000 ký tự.</p>
+
+                <h3>Bước 2: Vector hóa (Embedding)</h3>
+                <p>Các đoạn văn bản này được chuyển đổi thành các con số (vector) thể hiện ý nghĩa của chúng. Quy trình
+                    này được gọi là Embedding. Nhờ vậy, khi bạn hỏi về "vận chuyển", AI có thể tìm thấy các đoạn nói về
+                    "giao nhận" dù chúng không trùng khớp 100% từ ngữ.</p>
+
+                <h3>Bước 3: Lưu trữ vào Vector Database</h3>
+                <p>Dữ liệu đã vector hóa sẽ được lưu vào một cơ sở dữ liệu chuyên dụng để truy xuất nhanh chóng khi có
+                    câu hỏi.</p>
+
+                <h2>4. Giải pháp "Không cần code" với Arito Chatbot</h2>
+                <p>Nếu bạn thấy các bước trên quá phức tạp, **Arito Chatbot** đã đơn giản hóa toàn bộ quy trình này cho
+                    bạn:</p>
+                <ol>
+                    <li><strong>Upload:</strong> Bạn chỉ cần kéo thả file PDF vào hệ thống.</li>
+                    <li><strong>Learn:</strong> AI của Arito tự động phân tích, chunking và embedding dữ liệu trong tích
+                        tắc.</li>
+                    <li><strong>Deploy:</strong> Bạn có ngay một chatbot thông minh có thể nhúng vào Website hoặc dùng
+                        nội bộ.</li>
+                </ol>
+
+                <div class="post-cta">
+                    <i class="fas fa-file-pdf"></i>
+                    <h4>Bạn có file tài liệu PDF cần AI "thuộc lòng"?</h4>
+                    <p>Hãy để Arito biến kho tri thức cũ kỹ của bạn thành một trợ lý AI Assistant thông minh chỉ trong 5
+                        phút.</p>
+                    <a href="../index.html" class="btn btn-primary">Bắt đầu miễn phí ngay</a>
+                </div>
+
+                <h2>5. Ứng dụng thực tế trong doanh nghiệp</h2>
+                <ul>
+                    <li><strong>Đội ngũ Sale:</strong> Tra cứu nhanh bảng giá, thông số sản phẩm phức tạp khi đang tư
+                        vấn cho khách.</li>
+                    <li><strong>Bộ phận CSKH:</strong> Trả lời nhanh các câu hỏi về chính sách đổi trả, bảo hành mà
+                        không cần tra cứu thủ công.</li>
+                    <li><strong>Nhân viên mới:</strong> Tự tra cứu quy định công ty mà không cần làm phiền đồng nghiệp.
+                    </li>
+                </ul>
+
+                <h2>Kết luận</h2>
+                <p>Xây dựng AI đọc hiểu tài liệu không còn là điều quá xa vời. Với sự hỗ trợ của các nền tảng như Arito,
+                    bất kỳ doanh nghiệp nào cũng có thể sở hữu một trợ lý AI thấu hiểu mọi dữ liệu của mình, từ đó nâng
+                    cao hiệu suất làm việc lên gấp nhiều lần.</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="../components/footer.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

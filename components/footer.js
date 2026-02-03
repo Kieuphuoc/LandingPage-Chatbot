@@ -1,0 +1,57 @@
+const SHARED_FOOTER_HTML = `
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <img src="assets/logo_dark.webp" alt="Arito Logo" class="logo-image" style="width: auto;" id="footer-logo" />
+                </a>
+                <p>Chatbot chăm sóc khách hàng – Giúp bạn giữ khách và tăng lead tự động 24/7.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Zalo"><i class="fas fa-comment-dots"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Sản phẩm</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#solution" class="footer-link-home">Giải pháp</a></li>
+                    <li><a href="index.html#features" class="footer-link-home">Tính năng</a></li>
+                    <li><a href="index.html#pricing" class="footer-link-home">Bảng giá</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Hỗ trợ</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Hướng dẫn sử dụng</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#">Tài liệu API</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Liên hệ</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:19001234"><i class="fas fa-phone"></i> 1900 1234</a></li>
+                    <li><a href="mailto:contact@chatbot.vn"><i class="fas fa-envelope"></i> contact@chatbot.vn</a>
+                    </li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Arito. Tất cả quyền được bảo lưu.</p>
+            <div class="footer-legal">
+                <a href="#">Điều khoản sử dụng</a>
+                <a href="#">Chính sách bảo mật</a>
+            </div>
+        </div>
+    </div>
+</footer>
+`;

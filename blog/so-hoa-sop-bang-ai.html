@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Khám phá cách số hóa Quy trình vận hành tiêu chuẩn (SOP) bằng AI Chatbot. Giải pháp giúp nhân viên tra cứu quy trình nội bộ nhanh chóng và chính xác.">
+    <title>Hướng dẫn số hóa SOP (Quy trình vận hành) bằng AI - Blog Arito</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../assets/logo_a.webp" type="image/webp">
+
+    <style>
+        .post-header {
+            padding: 160px 0 60px;
+            background: linear-gradient(180deg, var(--primary-50), var(--white));
+            text-align: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-blue);
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .post-content-section {
+            padding-bottom: 100px;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .post-main-image {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .post-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .post-content h2 {
+            font-size: 1.75rem;
+            margin: 40px 0 20px;
+            color: var(--text-primary);
+        }
+
+        .post-content h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+            list-style: decimal;
+        }
+
+        .post-cta {
+            background: var(--primary-gradient-soft);
+            border: 1px dashed var(--primary-blue);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .post-header {
+                padding: 120px 0 40px;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.webp" alt="Arito Logo" style="width: 170px;" />
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#solution" class="nav-link">Giải pháp</a></li>
+                <li><a href="../index.html#features" class="nav-link">Tính năng</a></li>
+                <li><a href="../index.html#pricing" class="nav-link">Bảng giá</a></li>
+                <li><a href="index.html" class="nav-link active">Blog</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="../index.html#demo" class="btn btn-secondary">Dùng thử miễn phí</a>
+                <a href="../index.html#contact" class="btn btn-primary">Xem demo</a>
+            </div>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== POST HEADER ==================== -->
+    <header class="post-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <a href="index.html">Blog</a>
+                <span>/</span>
+                <span>Số hóa SOP bằng AI</span>
+            </div>
+            <h1 class="section-title">Hướng dẫn số hóa SOP (Quy trình vận hành) bằng AI</h1>
+            <div class="post-meta">
+                <span><i class="far fa-calendar-alt"></i> 03/02/2026</span>
+                <span><i class="far fa-user"></i> Arito Operations Team</span>
+                <span><i class="far fa-folder"></i> Vận hành & HR</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== POST CONTENT ==================== -->
+    <article class="post-content-section">
+        <div class="post-container">
+            <img src="https://images.unsplash.com/photo-1454165833767-027ffea702be?q=80&w=1000&auto=format&fit=crop"
+                alt="Digitalizing SOP with AI" class="post-main-image">
+
+            <div class="post-content">
+                <p><strong>SOP (Standard Operating Procedure)</strong> là "xương sống" của doanh nghiệp, giúp đảm bảo
+                    chất lượng công việc đồng bộ. Tuy nhiên, thách thức lớn nhất không phải là viết ra SOP, mà là làm
+                    sao để nhân viên thực sự áp dụng và tra cứu khi cần.</p>
+
+                <p>Thực tế tại nhiều công ty, SOP chỉ là những file Word nằm phủ bụi trong folder chia sẻ. Khi có thắc
+                    mắc, nhân viên thay vì tìm file lại đi hỏi đồng nghiệp, tạo ra một vòng lặp lãng phí thời gian. Bài
+                    viết này sẽ giúp bạn biến SOP thành một "Thư viện sống" nhờ trí tuệ nhân tạo.</p>
+
+                <h2>1. Vấn đề của SOP truyền thống</h2>
+                <ul>
+                    <li><strong>Quá dài và khó tìm:</strong> Nhân viên mất 15-20 phút chỉ để tìm đúng trang cần đọc.
+                    </li>
+                    <li><strong>Dữ liệu phân mảnh:</strong> Quy trình nằm rải rác ở nhiều nơi (PDF, Google Drive,
+                        email).</li>
+                    <li><strong>Khó cập nhật:</strong> Khi quy trình thay đổi, việc thông báo và thay đổi tài liệu cũ
+                        diễn ra chậm chạp.</li>
+                </ul>
+
+                <h2>2. Giải pháp: Biến SOP thành Trợ lý ảo AI</h2>
+                <p>Thay vì bắt nhân viên tự bơi trong biển tài liệu, AI giúp họ lấy được thông tin ngay lập tức. Chỉ cần
+                    hỏi: "Quy trình hoàn phí cho khách hàng gồm mấy bước?", AI sẽ trích xuất đúng các bước trong SOP và
+                    trình bày ngắn gọn.</p>
+
+                <h2>3. Quy trình 3 bước số hóa SOP với Arito</h2>
+
+                <h3>B1: Tập hợp dữ liệu chính thống</h3>
+                <p>Gom tất cả các file quy trình hiện có (dưới dạng .docx, .pdf hoặc link trang nội bộ). Đây sẽ là nguồn
+                    tri thức duy nhất cho AI (Single Source of Truth).</p>
+
+                <h3>B2: Huấn luyện AI chuyên biệt</h3>
+                <p>Nạp dữ liệu vào nền tảng Arito Chatbot. Công nghệ AI của chúng tôi sẽ phân tích cấu trúc quy trình,
+                    tạo ra các mối liên hệ thông tin để có thể trả lời các câu hỏi phức tạp nhất.</p>
+
+                <h3>B3: Triển khai đến từng ngõ ngách</h3>
+                <p>Nhúng chatbot AI vào hệ thống quản lý công việc hoặc ứng dụng chat mà nhân viên hay dùng. Giờ đây,
+                    mọi thắc mắc về vận hành đều có lời giải trong 3 giây.</p>
+
+                <div class="post-cta">
+                    <h4>Giải phóng bộ máy vận hành khỏi những nút thắt thông tin!</h4>
+                    <p>Liên hệ với Arito để được tư vấn giải pháp số hóa SOP chuyên sâu cho doanh nghiệp của bạn.</p>
+                    <a href="../index.html#contact" class="btn btn-secondary">Nhận tư vấn ngay</a>
+                </div>
+
+                <h2>4. Lợi ích vượt trội cho doanh nghiệp</h2>
+                <p>Việc số hóa SOP bằng AI mang lại sự thay đổi ngoạn mục trong vận hành:</p>
+                <ul>
+                    <li><strong>Sai sót giảm 50%:</strong> Do mọi thông tin đều được tra cứu chính xác theo văn bản gốc.
+                    </li>
+                    <li><strong>Đội ngũ HR/Ops thảnh thơi hơn:</strong> Không còn phải ngồi giải đáp những câu hỏi lặp
+                        đi lặp lại.</li>
+                    <li><strong>Đào tạo cấp tốc:</strong> Nhân viên mới có thể bắt nhịp công việc ngay nhờ sự hỗ trợ đắc
+                        lực từ trợ lý ảo.</li>
+                </ul>
+
+                <h2>Kết luận</h2>
+                <p>Số hóa SOP không chỉ là việc chuyển từ giấy sang tệp điện tử, mà là chuyển từ <strong>Dữ liệu
+                        tĩnh</strong> sang <strong>Tri thức động</strong>. Với trợ lý AI, quy trình của bạn sẽ thực sự
+                    "sống" và đồng hành cùng nhân viên trong mọi tác vụ mỗi ngày.</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="../components/footer.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

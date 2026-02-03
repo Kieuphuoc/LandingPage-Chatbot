@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Blog kiến thức về AI Chatbot, tối ưu vận hành và tăng trưởng doanh nghiệp từ Arito.">
+    <title>Blog Kiến Thức AI Chatbot & Doanh Nghiệp - Arito</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../assets/logo_a.webp" type="image/webp">
+
+    <style>
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary-gradient-soft);
+            color: var(--primary-blue);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .blog-card-excerpt {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-clamp: 3;
+            overflow: hidden;
+        }
+
+        .blog-card-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .blog-read-more {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-read-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-read-more i {
+            transform: translateX(5px);
+        }
+
+        .blog-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(180deg, var(--primary-50), var(--white));
+            text-align: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-blue);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.webp" alt="Arito Logo" style="width: 170px;" />
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#solution" class="nav-link">Giải pháp</a></li>
+                <li><a href="../index.html#features" class="nav-link">Tính năng</a></li>
+                <li><a href="../index.html#pricing" class="nav-link">Bảng giá</a></li>
+                <li><a href="index.html" class="nav-link active">Blog</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="../index.html#demo" class="btn btn-secondary">Dùng thử miễn phí</a>
+                <a href="../index.html#contact" class="btn btn-primary">Xem demo</a>
+            </div>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== BLOG HERO ==================== -->
+    <header class="blog-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <span>Blog</span>
+            </div>
+            <h1 class="section-title">Tin tức & Kiến thức AI</h1>
+            <p class="section-subtitle">Cập nhật xu hướng AI Chatbot và giải pháp tối ưu hóa vận hành doanh nghiệp.</p>
+        </div>
+    </header>
+
+    <!-- ==================== BLOG LIST ==================== -->
+    <section class="blog-list-section" style="padding-bottom: 100px;">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Post 1 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop"
+                        alt="Chatbot nội bộ" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-card-tag">Doanh nghiệp</span>
+                        <h3 class="blog-card-title">Chatbot nội bộ là gì? Tại sao doanh nghiệp 4.0 cần trợ lý AI</h3>
+                        <p class="blog-card-excerpt">Khám phá cách Chatbot AI đang thay đổi cách thức vận hành nội bộ,
+                            giúp giải phóng nhân sự khỏi các tác vụ lặp lại.</p>
+                        <div class="blog-card-footer">
+                            <a href="chatbot-noi-bo-la-gi.html" class="blog-read-more">Đọc thêm <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1000&auto=format&fit=crop"
+                        alt="AI đọc PDF" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-card-tag">Công nghệ</span>
+                        <h3 class="blog-card-title">Hướng dẫn xây dựng AI Assistant đọc hiểu mọi tài liệu PDF</h3>
+                        <p class="blog-card-excerpt">Công nghệ RAG (Retrieval-Augmented Generation) cho phép AI truy
+                            xuất thông tin chính xác từ kho dữ liệu PDF của bạn.</p>
+                        <div class="blog-card-footer">
+                            <a href="huong-dan-ai-doc-file-pdf.html" class="blog-read-more">Đọc thêm <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+                        alt="Tăng chuyển đổi" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-card-tag">Marketing</span>
+                        <h3 class="blog-card-title">Cách tăng tỷ lệ chốt đơn trên Website bằng Chatbot AI</h3>
+                        <p class="blog-card-excerpt">Biến khách truy cập thành khách hàng tiềm năng bằng cách tương tác
+                            chủ động và cá nhân hóa trải nghiệm người dùng.</p>
+                        <div class="blog-card-footer">
+                            <a href="tang-chuyen-doi-bang-chatbot-ai.html" class="blog-read-more">Đọc thêm <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 4 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1454165833767-027ffea702be?q=80&w=1000&auto=format&fit=crop"
+                        alt="Số hóa SOP" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-card-tag">Vận hành</span>
+                        <h3 class="blog-card-title">Hướng dẫn số hóa SOP (Quy trình vận hành) bằng AI</h3>
+                        <p class="blog-card-excerpt">Biến những file tài liệu SOP khô khan thành thư viện tri thức động,
+                            hỗ trợ nhân viên tra cứu quy trình trong tích tắc.</p>
+                        <div class="blog-card-footer">
+                            <a href="so-hoa-sop-bang-ai.html" class="blog-read-more">Đọc thêm <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post 5 -->
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000&auto=format&fit=crop"
+                        alt="Bảo mật dữ liệu" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-card-tag">Bảo mật</span>
+                        <h3 class="blog-card-title">Chatbot AI và Bảo mật dữ liệu doanh nghiệp: Những điều cần biết
+                        </h3>
+                        <p class="blog-card-excerpt">Khám phá cách bảo mật dữ liệu doanh nghiệp tuyệt đối khi triển
+                            khai Chatbot AI nội bộ và các tiêu chuẩn tại Arito.</p>
+                        <div class="blog-card-footer">
+                            <a href="chatbot-ai-va-bao-mat-du-lieu-doanh-nghiep.html" class="blog-read-more">Đọc
+                                thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="../components/footer.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>
