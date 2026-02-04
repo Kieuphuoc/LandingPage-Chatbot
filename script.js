@@ -4,9 +4,13 @@
  */
 
 // ==================== DOM READY ====================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Load shared components first
+    await loadNavbar();
+    await loadFooter();
+
+    // Initialize other features
     initNavbar();
-    loadFooter();
     initRoleTabs();
     initScrollAnimations();
     initSmoothScroll();
@@ -401,6 +405,62 @@ window.addEventListener('load', () => {
     });
 });
 
+// ==================== LOAD SHARED NAVBAR ====================
+async function loadNavbar() {
+    const navbarPlaceholder = document.getElementById('navbar-placeholder');
+    if (!navbarPlaceholder) return;
+
+    try {
+        let html = '';
+
+        // Try to use the pre-loaded string from navbar.js (to avoid CORS)
+        if (typeof SHARED_NAVBAR_HTML !== 'undefined') {
+            html = SHARED_NAVBAR_HTML;
+        } else {
+            // Fallback to fetch if the script wasn't included or failed
+            const isBlog = window.location.pathname.includes('/blog/');
+            const navbarPath = isBlog ? '../components/navbar.html' : 'components/navbar.html';
+            const response = await fetch(navbarPath);
+            if (response.ok) {
+                html = await response.text();
+            }
+        }
+
+        if (html) {
+            navbarPlaceholder.innerHTML = html;
+
+            // Adjust paths if in blog subdirectory
+            const isBlog = window.location.pathname.includes('/blog/');
+            if (isBlog) {
+                // Adjust logo path
+                const logo = document.getElementById('navbar-logo');
+                if (logo) logo.src = '../assets/activeSignal.webp';
+
+                // Adjust nav links
+                const navLinks = navbarPlaceholder.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                        if (href === 'blog/index.html') {
+                            link.setAttribute('href', 'index.html');
+                        } else {
+                            link.setAttribute('href', '../' + href);
+                        }
+                    } else if (href && href.startsWith('#')) {
+                        link.setAttribute('href', '../index.html' + href);
+                    }
+                });
+
+                // Adjust logo link
+                const logoLink = navbarPlaceholder.querySelector('.logo');
+                if (logoLink) logoLink.setAttribute('href', '../index.html');
+            }
+        }
+    } catch (error) {
+        console.error('Error loading navbar:', error);
+    }
+}
+
 // ==================== LOAD SHARED FOOTER ====================
 async function loadFooter() {
     const footerPlaceholder = document.getElementById('footer-placeholder');
@@ -431,19 +491,27 @@ async function loadFooter() {
                 const logo = document.getElementById('footer-logo');
                 if (logo) logo.src = '../assets/logo_dark.webp';
 
-                const links = document.querySelectorAll('.footer-link-home');
+                const links = document.querySelectorAll('.footer-link-home, .footer-links a');
                 links.forEach(link => {
                     const href = link.getAttribute('href');
-                    if (href && !href.startsWith('http')) {
-                        link.setAttribute('href', '../' + href);
+                    if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                        if (href !== '#') {
+                            link.setAttribute('href', '../' + href);
+                        }
                     }
                 });
+
+                // Adjust logo link
+                const footerLogoLink = footerPlaceholder.querySelector('.logo');
+                if (footerLogoLink) footerLogoLink.setAttribute('href', '../index.html');
             }
         }
     } catch (error) {
         console.error('Error loading footer:', error);
     }
 }
+
+
 
 // ==================== CONSOLE BRANDING ====================
 console.log('%c🤖 AI ERP Chatbot', 'font-size: 24px; font-weight: bold; color: #4F46E5;');
