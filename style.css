@@ -470,7 +470,7 @@ p {
     margin-bottom: 24px;
     /* animation: fadeInUp 0.6s ease 0.1s forwards;
     opacity: 0; */
-    font-size: 3.4rem;
+    font-size: 3.rem;
     font-weight: 800;
     line-height: 1.1;
     color: var(--gray-900);

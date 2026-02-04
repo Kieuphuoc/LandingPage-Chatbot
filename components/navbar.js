@@ -13,8 +13,8 @@ const SHARED_NAVBAR_HTML = `<nav class="navbar" id="navbar">
             </ul>
 
             <div class="nav-cta">
-                <a href="#demo" class="btn btn-secondary">Dùng thử miễn phí</a>
-                <a href="#contact" class="btn btn-primary">Xem demo</a>
+                <a href="#demo" class="btn btn-secondary">Trải nghiệm Trợ lý AI</a>
+                <a href="#contact" class="btn btn-primary">Tư vấn Doanh nghiệp</a>
             </div>
 
             <div class="mobile-toggle" id="mobileToggle">
