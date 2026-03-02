@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Liên hệ với Arito Technology Solutions - Hỗ trợ kỹ thuật, tư vấn giải pháp và báo giá dự án.">
+    <title>Liên hệ | Arito Smart Solutions</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="assets/logo_a.webp" type="image/webp">
+</head>
+
+<body class="contact-page">
+    <!-- ==================== NAVBAR ==================== -->
+    <div id="navbar-placeholder"></div>
+
+    <main class="contact-main">
+        <!-- ==================== CONTACT HERO ==================== -->
+        <section class="contact-hero-v2">
+            <div class="container">
+                <div class="hero-header">
+                    <span class="badge-v2">LIÊN HỆ</span>
+                    <h1 class="main-title">Chúng tôi luôn sẵn sàng hỗ trợ</h1>
+                    <p class="main-subtitle">
+                        Dù bạn cần tư vấn, báo giá hay hỗ trợ kỹ thuật — đội ngũ Arito sẽ<br>
+                        phản hồi trong vòng 24 giờ làm việc.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT CONTENT ==================== -->
+        <section class="contact-content-v2">
+            <div class="container">
+                <div class="contact-grid-v2">
+                    <!-- Left Column: Info Cards & Map -->
+                    <div class="info-sidebar">
+                        <div class="info-card-v2">
+                            <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="card-text">
+                                <h3>Địa chỉ</h3>
+                                <p>597m Tên Lửa, Bình Trị Đông B, Bình Tân, TP. Hồ Chí Minh</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card-v2">
+                            <div class="card-icon"><i class="fas fa-phone-alt"></i></div>
+                            <div class="card-text">
+                                <h3>Điện thoại</h3>
+                                <p>+028 7101 2288</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card-v2">
+                            <div class="card-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="card-text">
+                                <h3>Email</h3>
+                                <p>contact@arito.vn</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card-v2">
+                            <div class="card-icon"><i class="fas fa-clock"></i></div>
+                            <div class="card-text">
+                                <h3>Giờ làm việc</h3>
+                                <p>Thứ Hai – Thứ Sáu: 8:00 – 17:00</p>
+                                <p>Thứ Bảy: 8:00 – 12:00</p>
+                            </div>
+                        </div>
+
+                        <div class="map-card-v2">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.7719762647718!2d106.6045233151559!3d10.754853748026344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752d88f226737d%3A0x5e3a639bf714349e!2zQ09OSyBUWÛkgQ8O0UCBITeG7gXAgxJBpIE3hu6ljIE1ZWQ!5e0!3m2!1svi!2s!4v1708998123456"
+                                width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Form Card -->
+                    <div class="form-card-v2">
+                        <div id="contact-success" class="contact-success" style="display: none;">
+                            <div class="success-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h2>Cảm ơn bạn đã liên hệ!</h2>
+                            <p>Chúng tôi đã nhận được thông tin và sẽ phản hồi trong vòng <strong>24 giờ</strong> làm
+                                việc.</p>
+                            <button class="reset-btn-v2" id="contact-reset-btn" type="button">
+                                Gửi liên hệ khác
+                            </button>
+                        </div>
+
+                        <div id="contact-form-container">
+                            <div class="form-header-v2">
+                                <h2>Gửi tin nhắn</h2>
+                                <p>Điền thông tin và chúng tôi sẽ liên hệ lại sớm nhất.</p>
+                            </div>
+
+                            <form id="contact-form" class="contact-form-v2" novalidate
+                                onsubmit="handleContactSubmit(event)">
+                                <div class="form-row-v2">
+                                    <div class="form-group-v2">
+                                        <label>Họ và tên <span>*</span></label>
+                                        <input type="text" name="name" id="contact-name" placeholder="Nguyễn Văn A">
+                                        <span class="error-msg" id="error-name"></span>
+                                    </div>
+                                    <div class="form-group-v2">
+                                        <label>Công ty</label>
+                                        <input type="text" name="company" id="contact-company"
+                                            placeholder="Công ty TNHH ABC">
+                                    </div>
+                                </div>
+
+                                <div class="form-row-v2">
+                                    <div class="form-group-v2">
+                                        <label>Email <span>*</span></label>
+                                        <input type="email" name="email" id="contact-email"
+                                            placeholder="email@company.com">
+                                        <span class="error-msg" id="error-email"></span>
+                                    </div>
+                                    <div class="form-group-v2">
+                                        <label>Số điện thoại <span>*</span></label>
+                                        <input type="tel" name="phone" id="contact-phone" placeholder="0901 234 567">
+                                        <span class="error-msg" id="error-phone"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-v2">
+                                    <label>Tiêu đề / Chủ đề</label>
+                                    <select name="subject" id="contact-subject">
+                                        <option value="Tư vấn sản phẩm phần cứng">Tư vấn sản phẩm phần cứng</option>
+                                        <option value="Tư vấn giải pháp phần mềm">Tư vấn giải pháp phần mềm</option>
+                                        <option value="Demo & thử nghiệm">Demo & thử nghiệm</option>
+                                        <option value="Báo giá dự án">Báo giá dự án</option>
+                                        <option value="Hỗ trợ kỹ thuật">Hỗ trợ kỹ thuật</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group-v2">
+                                    <label>Nội dung <span>*</span></label>
+                                    <textarea name="message" id="contact-message"
+                                        placeholder="Mô tả nhu cầu của bạn, số lượng người dùng, quy mô doanh nghiệp…"
+                                        rows="5"></textarea>
+                                    <span class="error-msg" id="error-message"></span>
+                                </div>
+
+                                <button type="submit" class="submit-btn-v2" id="contact-submit-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Gửi tin nhắn</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

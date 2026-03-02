@@ -10,10 +10,11 @@ const SHARED_NAVBAR_HTML = `<nav class="navbar" id="navbar">
                 <li><a href="#features" class="nav-link">Tính năng</a></li>
                 <li><a href="#pricing" class="nav-link">Bảng giá</a></li>
                 <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Liên hệ</a></li>
             </ul>
 
             <div class="nav-cta">
-                <a href="#demo" class="btn btn-secondary">Trải nghiệm Trợ lý AI</a>
+                <a href="#contact" class="btn btn-secondary">Trải nghiệm Trợ lý AI</a>
                 <a href="#contact" class="btn btn-primary">Tư vấn Doanh nghiệp</a>
             </div>
 

@@ -516,3 +516,72 @@ async function loadFooter() {
 // ==================== CONSOLE BRANDING ====================
 console.log('%c🤖 AI ERP Chatbot', 'font-size: 24px; font-weight: bold; color: #4F46E5;');
 console.log('%cTrợ lý điều hành doanh nghiệp thông minh', 'font-size: 14px; color: #7C3AED;');
+
+// ==================== CONTACT FORM HANDLING ====================
+function handleContactSubmit(e) {
+    e.preventDefault();
+
+    // Clear previous errors
+    document.querySelectorAll('.error-msg').forEach(el => el.textContent = '');
+    document.querySelectorAll('.contact-form input, .contact-form textarea, .contact-form-v2 input, .contact-form-v2 textarea').forEach(el => el.classList.remove('error'));
+
+    const form = e.target;
+    let hasError = false;
+
+    const name = form.name.value.trim();
+    if (!name) {
+        document.getElementById('error-name').textContent = 'Vui lòng nhập họ tên';
+        form.name.classList.add('error');
+        hasError = true;
+    }
+
+    const email = form.email.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+        document.getElementById('error-email').textContent = 'Email không hợp lệ';
+        form.email.classList.add('error');
+        hasError = true;
+    }
+
+    const phone = form.phone.value.trim();
+    if (!phone) {
+        document.getElementById('error-phone').textContent = 'Vui lòng nhập số điện thoại';
+        form.phone.classList.add('error');
+        hasError = true;
+    }
+
+    const message = form.message.value.trim();
+    if (!message) {
+        document.getElementById('error-message').textContent = 'Vui lòng nhập nội dung';
+        form.message.classList.add('error');
+        hasError = true;
+    }
+
+    if (hasError) return;
+
+    const btn = document.getElementById('contact-submit-btn');
+    const originalContent = btn.innerHTML;
+
+    // Simulate loading
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner" style="width: 16px; height: 16px; border: 2px solid white; border-top-color: transparent; border-radius: 50%; display: inline-block; animation: spin 1s linear infinite;"></span><span class="btn-text" style="margin-left: 8px;">Đang gửi…</span>';
+
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalContent;
+
+        document.getElementById('contact-form-container').style.display = 'none';
+        document.getElementById('contact-success').style.display = 'block';
+    }, 1200);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const resetBtn = document.getElementById('contact-reset-btn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            document.getElementById('contact-success').style.display = 'none';
+            document.getElementById('contact-form-container').style.display = 'block';
+            document.getElementById('contact-form').reset();
+        });
+    }
+});
